@@ -5,7 +5,7 @@ import random
 
 #add sensor reading code here
 def readSensor():
-	global sval = 0
+	global sval 
 	sval = random.randint(0,5)
 	sval = round(sval,1)
 
