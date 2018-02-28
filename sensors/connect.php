@@ -6,4 +6,5 @@ $MyHostname = "localhost";  // this is usually "localhost" unless your database 
 
 $dbh = mysql_pconnect($MyHostname , $MyUsername, $MyPassword);
 $selected = mysql_select_db("myDB",$dbh); //Enter your database name here 
+echo "Connected to database";
 ?>

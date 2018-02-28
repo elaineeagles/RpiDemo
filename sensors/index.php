@@ -68,7 +68,7 @@
 
         echo '<tr>';
         echo '   <td'.$css_class.'>'.$row["snum"].'</td>';
-        echo '   <td'.$css_class.'>'.$row["date"].'</td>';
+        echo '   <td'.$css_class.'>'.$row["data"].'</td>';
         echo '   <td'.$css_class.'>'.$row["sval"].'</td>';
         echo '</tr>';
     }
