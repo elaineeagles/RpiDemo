@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta http-equiv="refresh" content="5" >
-    <title>Temperature, Humidity and Pressure Measurement</title>
+    <title>Sensor Data</title>
     <style type="text/css">
         .table_titles, .table_cells_odd, .table_cells_even {
                 padding-right: 20px;
@@ -33,23 +33,21 @@
 </head>
 
     <body>
-        <h1>Temperature, Humidity and Pressure Measurement</h1>
+        <h1>Sensor Data</h1>
 
 
 <!--<div style="overflow-x:auto;">-->
     <table border="0" cellspacing="0" cellpadding="4">
       <tr>
-            <td class="table_titles">ID</td>
+            <td class="table_titles">Sensor</td>
             <td class="table_titles">Date and Time</td>
-            <td class="table_titles">Temperature</td>
-            <td class="table_titles">Humidity</td>
-            <td class="table_titles">Pressure</td>
+            <td class="table_titles">Value</td>
           </tr>
 <?php
 
 
     // Retrieve all records and display them
-    $result = mysql_query("SELECT * FROM data ORDER BY id DESC ");
+    $result = mysql_query("SELECT * FROM sensordata ORDER BY snum DESC ");
 
     // Used for row color toggle
     $oddrow = true;
@@ -69,11 +67,9 @@
         $oddrow = !$oddrow;
 
         echo '<tr>';
-        echo '   <td'.$css_class.'>'.$row["id"].'</td>';
+        echo '   <td'.$css_class.'>'.$row["snum"].'</td>';
         echo '   <td'.$css_class.'>'.$row["date"].'</td>';
-        echo '   <td'.$css_class.'>'.$row["temperature"].'</td>';
-        echo '   <td'.$css_class.'>'.$row["humidity"].'</td>';
-        echo '   <td'.$css_class.'>'.$row["pressure"].'</td>';
+        echo '   <td'.$css_class.'>'.$row["sval"].'</td>';
         echo '</tr>';
     }
 ?>
