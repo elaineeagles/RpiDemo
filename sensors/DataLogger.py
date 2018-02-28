@@ -17,7 +17,7 @@ def sendDataToServer():
 	print("Sensing...")
 	readSensor()
 	print("sensor " + sval)
-	myurl = ""http://localhost/RPi/sensors/add_data.php?snum=1&sval="+sval
+	myurl = "http://localhost/RPi/sensors/add_data.php?snum=1&sval="+sval
 	urllib2.urlopen(myurl).read()
 
 #main part of program
