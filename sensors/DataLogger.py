@@ -16,8 +16,9 @@ def sendDataToServer():
 	threading.Timer(600,sendDataToServer).start()
 	print("Sensing...")
 	readSensor()
-	print(sval)
-	urllib2.urlopen("http://localhost/RPi/sensors/add_data.php?snum=1&sval="+sval).read()
+	print("sensor " + sval)
+	myurl = ""http://localhost/RPi/sensors/add_data.php?snum=1&sval="+sval
+	urllib2.urlopen(myurl).read()
 
 #main part of program
 sendDataToServer()
