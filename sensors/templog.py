@@ -1,31 +1,38 @@
 import os
 from threading import Thread
-import urllib2
+import Adafruit_DHT
+import requests
 import random
 import time
-import RPi.GPIO as GPIO
 
 #add sensor reading code here
 def readSensor(sval):
 	print("reading sensor ...")
-        time.sleep(5)
+	time.sleep(5)
 	print(sval)
-	myurl = "http://localhost/RPi/sensors/add_data.php?snum=1&sval="+str(sval)
-	urllib2.urlopen(myurl).read()
+	#myurl = "http://localhost/RPi/sensors/add_data.php?snum=1&sval="+str(sval)
+	#urllib3.urlopen(myurl).read()
+	sval = str(sval)
+	sval = sval.rstrip('%')
+	r = requests.post('http://localhost/RPi/sensors/add_temp.php', data={'snum':1, 'sval':sval})
+	print(r.text)
 	
 # function to send data read from sensor to WebAPI
 def sendDataToServer(pmode):
 	if pmode == 1:
-		GPIO.setmode(GPIO.BCM)
-		INPUT_PIN = 27 
-		GPIO.setup(INPUT_PIN, GPIO.IN)
-        while True:
-		if pmode == 1:
-                	val=GPIO.input(INPUT_PIN)
-			if val:
-				readSensor(val) 
-		else:
-			readSensor(random.randint(1, 10))
+		sensor = Adafruit_DHT.DHT11
+		gpio=27 
+		while True:
+			if pmode == 1:
+				humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
+				if humidity is not None and temperature is not None:
+					print ('Temp={0:0.1f}*C Humidity={1:0.1f}%'.format(temperature, humidity))
+				else:
+					print ('Failed to get reading, try again!')
+			if temperature:
+				readSensor(humidity) 
+			else:
+				readSensor(random.randint(1, 10))
 
 #main part of program
 pmode=1

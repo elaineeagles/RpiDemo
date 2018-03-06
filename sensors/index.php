@@ -47,7 +47,7 @@
 
 
     // Retrieve all records and display them
-    $result = mysql_query("SELECT * FROM sensordata ORDER BY snum DESC ");
+    $result = mysql_query("SELECT * FROM tempdata ORDER BY snum DESC ");
 
     // Used for row color toggle
     $oddrow = true;
@@ -68,7 +68,7 @@
 
         echo '<tr>';
         echo '   <td'.$css_class.'>'.$row["snum"].'</td>';
-        echo '   <td'.$css_class.'>'.$row["data"].'</td>';
+        echo '   <td'.$css_class.'>'.$row["date"].'</td>';
         echo '   <td'.$css_class.'>'.$row["sval"].'</td>';
         echo '</tr>';
     }
